@@ -18,9 +18,17 @@ const VideoPlayer = () => {
     <div>
 
 <h1>Watch Video</h1>
-<button onClick={handleWatchVideo}>Watch Video Content-Disposition inline</button>
-
-<button onClick={handleWatchVideoattachment}>Watch Video Content-Disposition attachment</button>
+inline
+<video controls width="600">
+        <source src="/api/video" type="video/mp4" /> {/* Use the API route here */}
+        Your browser does not support the video tag.
+      </video>
+      
+      attachment
+<video controls width="600">
+        <source src="/api/video1" type="video/mp4" /> {/* Use the API route here */}
+        Your browser does not support the video tag.
+      </video>
 
 playsInline=============
       <video

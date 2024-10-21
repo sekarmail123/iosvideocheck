@@ -18,7 +18,7 @@ playsInline and video from public folder
         autoPlay
         muted
       >
-        <source src="/videos/HOSETestDrive.mp4" type="video/mp4" />
+        <source src="/videos/HOSETestDrive.mp4" type="video/mp4" controls autoplay muted preload="auto" playsInline/>
         Your browser does not support the video tag.
       </video>
      
@@ -26,7 +26,7 @@ playsInline and video from public folder
 <br />
 <br />
 ===video from parker /content/dam===
-<video controls autoplay muted class="additional-image-dialog_video__PUwN7" src="https://www.parker.com/content/dam/videos/fcg/fluid-system-connectors-division/installation_videos/core_brass/HOSE_BARB_125HBL-6-6_FINAL.mp4"></video>
+<video controls autoplay muted  preload="auto" playsInline class="additional-image-dialog_video__PUwN7" src="https://www.parker.com/content/dam/videos/fcg/fluid-system-connectors-division/installation_videos/core_brass/HOSE_BARB_125HBL-6-6_FINAL.mp4"></video>
 
     </div>
   );

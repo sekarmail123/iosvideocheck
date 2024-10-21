@@ -26,6 +26,11 @@ playsInline=============
         <source src="/videos/HOSETestDrive.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video> */}
+<br />
+<br />
+<br />
+===video from parker===
+<video controls="" autoplay="" class="additional-image-dialog_video__PUwN7" src="https://www.parker.com/content/dam/videos/fcg/fluid-system-connectors-division/installation_videos/core_brass/HOSE_BARB_125HBL-6-6_FINAL.mp4"></video>
 
     </div>
   );

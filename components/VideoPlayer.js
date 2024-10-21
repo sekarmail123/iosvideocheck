@@ -16,7 +16,7 @@ playsInline=============
         <source src="/videos/HOSETestDrive.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      controls| autoPlay
+      {/* controls| autoPlay
       <video
         width="100%"
         height="300"
@@ -25,7 +25,7 @@ playsInline=============
       >
         <source src="/videos/HOSETestDrive.mp4" type="video/mp4" />
         Your browser does not support the video tag.
-      </video>
+      </video> */}
 
     </div>
   );

@@ -2,8 +2,26 @@
 import React from 'react';
 
 const VideoPlayer = () => {
+
+    const handleWatchVideo = () => {
+        // Navigate to the API route that serves the video
+        window.open('/api/video', '_blank');
+      };
+
+      const handleWatchVideoattachment = () => {
+        // Navigate to the API route that serves the video
+        window.open('/api/video1', '_blank');
+      };
+
+
   return (
     <div>
+
+<h1>Watch Video</h1>
+<button onClick={handleWatchVideo}>Watch Video Content-Disposition inline</button>
+
+<button onClick={handleWatchVideoattachment}>Watch Video Content-Disposition attachment</button>
+
 playsInline=============
       <video
         width="100%"

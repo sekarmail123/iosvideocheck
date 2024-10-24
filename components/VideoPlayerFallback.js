@@ -22,19 +22,26 @@ const VideoPlayerWithFallback = () => {
     }
   };
 
+  const isSafari = () => {
+    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  };
+
+
   useEffect(() => {
+    if (isSafari()) {
     downloadVideoAndPlay(originalVideoSrc);
+    }
   }, []);
 
   return (
     <div>
-      <video id="video" controls autoPlay muted src={videoSrc}>
+        <h1>Browser:{isSafari() ? "THis is safari" : "not safari"}</h1>
+        <div>
+      <video id="video" controls autoPlay muted src={videoSrc || originalVideoSrc}>
         Your browser does not support the video tag.
       </video>
-      <br />
-      {/* <button onClick={() => downloadVideoAndPlay(originalVideoSrc)}>
-        Download and Play Video
-      </button> */}
+        </div>
+   
     </div>
   );
 };

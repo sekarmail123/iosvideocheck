@@ -28,7 +28,7 @@ const VideoPlayerWithFallback = () => {
 
   return (
     <div>
-      <video id="video" controls autoPlay src={videoSrc}>
+      <video id="video" controls autoPlay muted src={videoSrc}>
         Your browser does not support the video tag.
       </video>
       <br />

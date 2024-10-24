@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
+const isSafari = () => {
+    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  };
+
 const VideoPlayerWithFallback = () => {
   const [videoSrc, setVideoSrc] = useState('');
   const originalVideoSrc = 'https://www.parker.com/content/dam/videos/fcg/quick-coupling-division/ManualConnectCouplingsInstallation.mp4';
+
 
   const downloadVideoAndPlay = async (src) => {
     try {
@@ -22,10 +27,7 @@ const VideoPlayerWithFallback = () => {
     }
   };
 
-  const isSafari = () => {
-    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  };
-
+  
 
   useEffect(() => {
     if (isSafari()) {

@@ -37,12 +37,7 @@ const VideoPlayerWithFallback = () => {
         if (isSafari) {
             downloadVideoAndPlay(originalVideoSrc);
         }
-        return () => {
-            if (videoSrc) {
-                URL.revokeObjectURL(videoSrc);
-            }
-        };
-    }, [isSafari, videoSrc]);
+    }, [isSafari]);
 
     return (
         <div>

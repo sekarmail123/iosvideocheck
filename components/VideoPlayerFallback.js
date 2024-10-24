@@ -1,12 +1,10 @@
-'use client'
-import React, { useEffect, useState } from 'react';
 
-const isSafari = () => {
-    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  };
+import React, { useEffect, useState } from 'react';
 
 const VideoPlayerWithFallback = () => {
   const [videoSrc, setVideoSrc] = useState('');
+  const [isSafari, setIsSafari] = useState(false);
+
   const originalVideoSrc = 'https://www.parker.com/content/dam/videos/fcg/quick-coupling-division/ManualConnectCouplingsInstallation.mp4';
 
 
@@ -29,16 +27,25 @@ const VideoPlayerWithFallback = () => {
   };
 
   
-
   useEffect(() => {
-    if (isSafari()) {
+    if (typeof window !== 'undefined') {
+        const ua = navigator.userAgent;
+        const safari = /^((?!chrome|android).)*safari/i.test(ua);
+        debugger
+        setIsSafari(safari);
+      }
+  }, []);
+
+
+  useEffect(() => {        
+    if (isSafari) {
     downloadVideoAndPlay(originalVideoSrc);
     }
-  }, []);
+  }, [isSafari]);
 
   return (
     <div>
-        <h1>Browser:{isSafari() ? "THis is safari" : "not safari"}</h1>
+        <h1>Browser:{isSafari ? "THis is safari" : "not safari"}</h1>
         <div>
       <video id="video" controls autoPlay muted src={videoSrc || originalVideoSrc}>
         Your browser does not support the video tag.

@@ -2,58 +2,59 @@
 import React, { useEffect, useState } from 'react';
 
 const VideoPlayerWithFallback = () => {
-  const [videoSrc, setVideoSrc] = useState('');
-  const [isSafari, setIsSafari] = useState(false);
+    const [videoSrc, setVideoSrc] = useState('');
+    const [isSafari, setIsSafari] = useState(false);
 
-  const originalVideoSrc = 'https://www.parker.com/content/dam/videos/fcg/quick-coupling-division/ManualConnectCouplingsInstallation.mp4';
+    const originalVideoSrc = 'https://www.parker.com/content/dam/videos/fcg/quick-coupling-division/ManualConnectCouplingsInstallation.mp4';
+    const downloadVideoAndPlay = async (src) => {
+        try {
+            // Fetch the video, allowing for a range request or full download.
+            const response = await fetch(src, { headers: { Range: 'bytes=0-' } });
 
+            // Convert response into a blob
+            const blob = await response.blob();
 
-  const downloadVideoAndPlay = async (src) => {
-    try {
-      // Fetch the video, allowing for a range request or full download.
-      const response = await fetch(src, { headers: { Range: 'bytes=0-' } });
-      
-      // Convert response into a blob
-      const blob = await response.blob();
-      
-      // Create a local URL for the blob
-      const videoURL = URL.createObjectURL(blob);
-      
-      // Set the video source to the blob URL
-      setVideoSrc(videoURL);
-    } catch (error) {
-      console.error('Error fetching video:', error);
-    }
-  };
+            // Create a local URL for the blob
+            const videoURL = URL.createObjectURL(blob);
 
-  
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-        const ua = navigator.userAgent;
-        const safari = /^((?!chrome|android).)*safari/i.test(ua);
-        debugger
-        setIsSafari(safari);
-      }
-  }, []);
+            // Set the video source to the blob URL
+            setVideoSrc(videoURL);
+        } catch (error) {
+            console.error('Error fetching video:', error);
+        }
+    };
 
 
-  useEffect(() => {        
-    if (isSafari) {
-    downloadVideoAndPlay(originalVideoSrc);
-    }
-  }, [isSafari]);
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const ua = navigator.userAgent;
+            const safari = /^((?!chrome|android).)*safari/i.test(ua);
+            setIsSafari(safari);
+        }
+    }, []);
 
-  return (
-    <div>
-        <h1>Browser:{isSafari ? "THis is safari" : "not safari"}</h1>
+    useEffect(() => {
+        if (isSafari) {
+            downloadVideoAndPlay(originalVideoSrc);
+        }
+        return () => {
+            if (videoSrc) {
+                URL.revokeObjectURL(videoSrc);
+            }
+        };
+    }, [isSafari, videoSrc]);
+
+    return (
         <div>
-      <video id="video" controls autoPlay muted src={videoSrc || originalVideoSrc}>
-        Your browser does not support the video tag.
-      </video>
+            <h1>Browser:{isSafari ? "THis is safari" : "not safari"}</h1>
+            <div>
+                <video id="video" controls autoPlay muted src={videoSrc || originalVideoSrc}>
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
         </div>
-   
-    </div>
-  );
+    );
 };
 
 export default VideoPlayerWithFallback;
